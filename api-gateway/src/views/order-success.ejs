@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+
+<div class="order-success-container">
+    <h2>🎉 Pedido Realizado com Sucesso!</h2>
+    <p>Obrigado pela sua compra.</p>
+    <p>O número do seu pedido é: <strong><%= orderId %></strong></p>
+    <a href="/orders" class="button-link">Ver Meus Pedidos</a>
+    <a href="/" class="button-link secondary">Continuar Comprando</a>
+</div>
+
+<style>
+    .order-success-container { text-align: center; padding: 3rem; background-color: #f0fff0; border: 1px solid #cce5cc; border-radius: 8px; }
+    .button-link { display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin: 10px; }
+    .button-link.secondary { background-color: #6c757d; }
+</style>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Notebook Gamer Avançado",
+    "price": 7499.90,
+    "description": "Notebook com placa de vídeo dedicada, 16GB RAM e SSD de 512GB.",
+    "image_url": "https://img.odcdn.com.br/wp-content/uploads/2023/01/onur-binay-auf3GwpVaOM-unsplash-1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Monitor Curvo 27 polegadas",
+    "price": 1899.00,
+    "description": "Monitor com alta taxa de atualização (144Hz) e resolução QHD.",
+    "image_url": "https://cdn.mos.cms.futurecdn.net/37jtUzxZGf25Ch9zrwr563.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Teclado Gamer Mecânico RGB",
+    "price": 349.50,
+    "description": "Teclado com switches blue e iluminação RGB customizável.",
+    "image_url": "https://www.the-g-lab.tech/wp-content/uploads/2023/10/KEYS-HYDROGEN-3_005.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Mouse Gamer Wireless G PRO X",
+    "price": 499.00,
+    "description": "Mouse com sensor de alta precisão e bateria de longa duração.",
+    "image_url": "https://ultimaficha.com.br/wp-content/uploads/2024/09/BYuKPtjHVECRhLvzThCsaL.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Cadeira Ergonômica Office Pro",
+    "price": 1099.00,
+    "description": "Cadeira ergonômica para escritórios feita a partir de materiais premium.",
+    "image_url": "https://www.equip-info.net/media/catalog/category/Office_Chairs_1.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Headset Gamer Surround 7.1",
+    "price": 549.90,
+    "description": "Áudio imersivo com tecnologia surround 7.1 e microfone com cancelamento de ruído.",
+    "image_url": "https://t2.tudocdn.net/724781?w=1920"
+  },
+  {
+    "id": 7,
+    "name": "SSD NVMe 2TB Ultra Speed",
+    "price": 899.00,
+    "description": "Armazenamento de altíssima velocidade para jogos e aplicações pesadas, com leitura de até 7000MB/s.",
+    "image_url": "https://t2.tudocdn.net/725483?w=1920"
+  },
+  {
+    "id": 8,
+    "name": "Webcam 4K Pro Streaming",
+    "price": 999.50,
+    "description": "Qualidade de imagem 4K UHD, ideal para streaming profissional e videoconferências.",
+    "image_url": "https://i.pcmag.com/imagery/reviews/05YgRyKh1ouQXuPFke2dF4X-9..v1709586522.jpg"
+  }
+]

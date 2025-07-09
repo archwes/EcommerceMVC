@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+<% if (product) { %>
+    <a href="/" class="back-link" style="display: inline-block; margin-bottom: 1rem;">&larr; Voltar para a loja</a>
+
+    <div class="product-detail-layout">
+        
+        <div class="product-detail-image">
+            <img src="<%= product.image_url %>" alt="<%= product.name %>">
+        </div>
+
+        <div class="product-detail-info">
+            <h1><%= product.name %></h1>
+            <p class="price">R$ <%= product.price.toFixed(2).replace('.', ',') %></p>
+            
+            <h4>Descrição</h4>
+            <p class="description"><%= product.description %></p>
+
+            <div class="product-actions">
+                 <button class="btn btn-buy" 
+                        onclick="addToCart('<%= product.id %>', '<%= product.name %>', '<%= product.price %>')">
+                    Adicionar ao Carrinho
+                </button>
+            </div>
+        </div>
+
+    </div>
+<% } else { %>
+    <h1>Produto não encontrado</h1>
+    <a href="/">Voltar para a loja</a>
+<% } %>
+
+<%- include('partials/footer') %>

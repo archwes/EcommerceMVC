@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<h2>Meus Pedidos</h2>
+
+<% if (orders.length > 0) { %>
+    <% orders.forEach(order => { %>
+        <div class="order-card">
+            <h3>Pedido: <%= order.orderId %></h3>
+            <p><strong>Data:</strong> <%= new Date(order.createdAt).toLocaleString('pt-BR') %></p>
+            <p><strong>Total:</strong> R$ <%= order.total.toFixed(2).replace('.', ',') %></p>
+            <h4>Itens:</h4>
+            <ul>
+                <% order.items.forEach(item => { %>
+                    <li><%= item.productName %> - R$ <%= parseFloat(item.productPrice).toFixed(2).replace('.', ',') %></li>
+                <% }); %>
+            </ul>
+        </div>
+    <% }); %>
+<% } else { %>
+    <p>Você ainda não fez nenhum pedido.</p>
+<% } %>
+
+<style>
+    .order-card { background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
+</style>
+
+<%- include('partials/footer') %>

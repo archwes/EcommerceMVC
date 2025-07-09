@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <h2>Seu Carrinho</h2>
+
+    <% if (cartItems && cartItems.length > 0) { %>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% cartItems.forEach(item => { %>
+                    <tr>
+                        <td><%= item.productName %></td>
+                        <td>R$ <%= parseFloat(item.productPrice).toFixed(2).replace('.', ',') %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>R$ <%= total.toFixed(2).replace('.', ',') %></strong></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="checkout-button-container">
+            <form action="/order/create" method="POST">
+                <button type="submit" class="btn btn-primary">Finalizar Compra</button>
+            </form>
+        </div>
+    <% } else { %>
+        <div style="text-align: center; padding: 3rem;">
+            <h3>Seu carrinho está vazio.</h3>
+            <a href="/" class="btn btn-primary" style="margin-top: 1rem;">Continuar Comprando</a>
+        </div>
+    <% } %>
+</div>
+
+<%- include('partials/footer') %>

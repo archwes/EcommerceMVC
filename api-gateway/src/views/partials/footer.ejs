@@ -1,0 +1,72 @@
+<script>
+    async function addToCart(productId, productName, productPrice) {
+        try {
+            const response = await fetch('/cart/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ productId, productName, productPrice }) // Sem a URL da imagem
+            });
+            if (response.ok) {
+                updateCartCount();
+            } else {
+                alert('Falha ao adicionar produto.');
+            }
+        } catch (error) {
+            console.error('Erro na requisição:', error);
+        }
+    }
+
+    async function updateCartCount() {
+        try {
+            const response = await fetch('/cart/count');
+            const data = await response.json();
+            const cartCountElement = document.querySelector('.cart-count');
+            if (data.count > 0) {
+                cartCountElement.textContent = data.count;
+                cartCountElement.classList.remove('hidden');
+            } else {
+                cartCountElement.classList.add('hidden');
+            }
+        } catch (error) {
+            console.error('Erro ao buscar contagem do carrinho:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', updateCartCount);
+
+    // --- NOVA LÓGICA PARA O SELETOR DE TEMA ---
+    const themeToggleButton = document.getElementById('theme-toggle-btn');
+    const body = document.body;
+    const themeIcon = themeToggleButton.querySelector('i');
+
+    // Função para aplicar o tema salvo
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            body.classList.remove('dark-mode');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    }
+
+    // Verifica o tema salvo no localStorage ao carregar a página
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
+    // Adiciona o evento de clique no botão
+    themeToggleButton.addEventListener('click', () => {
+        let newTheme = 'light';
+        if (!body.classList.contains('dark-mode')) {
+            newTheme = 'dark';
+        }
+        
+        // Aplica o novo tema e salva no localStorage
+        applyTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+</script>
+</body>
+</html>

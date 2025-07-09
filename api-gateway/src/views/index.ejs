@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+<h2>Destaques da Semana</h2>
+
+<div class="product-grid">
+    <% if (products.length > 0) { %>
+        <% products.forEach(product => { %>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <a href="/product/<%= product.id %>">
+                        <img src="<%= product.image_url %>" alt="<%= product.name %>">
+                    </a>
+                </div>
+                <div class="product-info">
+                    <h3><%= product.name %></h3>
+                    <p class="price">R$ <%= product.price.toFixed(2).replace('.', ',') %></p>
+                    
+                    <div class="product-actions">
+                        <a href="/product/<%= product.id %>" class="btn btn-details">Detalhes</a>
+                        <button class="btn btn-buy" 
+                            onclick="addToCart('<%= product.id %>', '<%= product.name %>', '<%= product.price %>')">
+                                Comprar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>Nenhum produto encontrado no momento.</p>
+    <% } %>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Loja</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+        /* --- PASSO 1: DEFINIÇÃO DAS VARIÁVEIS DE COR (TEMA CLARO COMO PADRÃO) --- */
+        :root {
+            --cor-fundo: #f9fafb;
+            --cor-surface: #ffffff; /* Cor de fundo para cards, tabelas, etc. */
+            --cor-borda: #e5e7eb;
+            --cor-texto-primario: #111827;
+            --cor-texto-secundario: #6b7280;
+            --cor-acao-primaria: #007bff;
+            --cor-acao-hover: #0056b3;
+            --sombra: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        /* --- PASSO 2: DEFINIÇÃO DAS VARIÁVEIS PARA O MODO ESCURO --- */
+        body.dark-mode {
+            --cor-fundo: #111827;
+            --cor-surface: #1f2937;
+            --cor-borda: #374151;
+            --cor-texto-primario: #f9fafb;
+            --cor-texto-secundario: #9ca3af;
+            --cor-acao-primaria: #3b82f6;
+            --cor-acao-hover: #1d4ed8;
+            --sombra: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+        }
+
+        /* --- PASSO 3: ESTILOS GLOBAIS USANDO AS VARIÁVEIS --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-primario);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        
+        h2 { margin-bottom: 1.5rem; font-size: 1.8rem; font-weight: bold; }
+
+        /* --- CABEÇALHO / NAVBAR --- */
+        .main-header {
+            background-color: var(--cor-surface);
+            padding: 1rem 0;
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: var(--sombra);
+            border-bottom: 1px solid var(--cor-borda);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+
+        .nav-logo a { color: var(--cor-texto-primario); text-decoration: none; font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; }
+        .nav-logo i { margin-right: 0.5rem; color: var(--cor-acao-primaria); }
+
+        .nav-search { flex-grow: 1; margin: 0 2rem; max-width: 600px; }
+        .search-bar {
+            width: 100%; padding: 0.75rem 1rem; border-radius: var(--borda-radius);
+            border: 1px solid var(--cor-borda);
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto-primario);
+            font-size: 1rem;
+        }
+        .search-bar::placeholder { color: var(--cor-texto-secundario); }
+        
+        .nav-actions { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-actions a { color: var(--cor-texto-secundario); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; position: relative; transition: color 0.2s ease; }
+        .nav-actions a:hover { color: var(--cor-texto-primario); }
+        .nav-actions a i { font-size: 1.2rem; }
+        .cart-link .cart-count { /* ... (estilo do contador sem alteração) ... */ }
+        .hidden { display: none; }
+        
+        .theme-toggle { background: none; border: none; color: var(--cor-texto-secundario); font-size: 1.2rem; cursor: pointer; transition: color 0.2s ease; }
+        .theme-toggle:hover { color: var(--cor-texto-primario); }
+
+        /* --- CARDS DE PRODUTO --- */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; padding: 2rem 0; }
+        .product-card {
+            background: var(--cor-surface); border: 1px solid var(--cor-borda);
+            border-radius: var(--borda-radius); box-shadow: var(--sombra);
+            display: flex; flex-direction: column; overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.3s ease;
+        }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-image-container { width: 100%; aspect-ratio: 1 / 1; background-color: var(--cor-fundo); }
+        .product-image-container img { width: 100%; height: 100%; object-fit: cover; }
+        .product-info { padding: 1rem; text-align: left; flex-grow: 1; display: flex; flex-direction: column; }
+        .product-info h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .product-info .price { font-size: 1.25rem; font-weight: bold; color: var(--cor-texto-primario); margin-bottom: 1rem; }
+        .product-actions { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        
+        /* --- BOTÕES --- */
+        .btn { /* ... (estilos do botão sem alteração de cor direta) ... */ }
+        .btn-details { background-color: var(--cor-fundo); color: var(--cor-texto-primario); border: 1px solid var(--cor-borda); }
+        .btn-details:hover { background-color: var(--cor-borda); }
+        .btn-buy { background-color: var(--cor-acao-primaria); color: var(--cor-branca); }
+        .btn-buy:hover { background-color: var(--cor-acao-hover); }
+
+        /* --- PÁGINA DO CARRINHO --- */
+        .cart-table {
+            width: 100%; border-collapse: collapse; margin-bottom: 2rem;
+            background: var(--cor-surface); box-shadow: var(--sombra);
+            border-radius: var(--borda-radius); overflow: hidden;
+            border: 1px solid var(--cor-borda);
+        }
+        .cart-table th, .cart-table td { border-bottom: 1px solid var(--cor-borda); padding: 1rem; text-align: left; }
+        .cart-table th { background-color: var(--cor-fundo); }
+        /* ... (resto dos estilos, agora usando variáveis) ... */
+        /* =================================================== */
+/* CORREÇÃO DEFINITIVA PARA O CARD DA PÁGINA /orders   */
+/* =================================================== */
+
+/* Força o fundo do card a ser sempre branco */
+.order-card {
+    background-color: #ffffff !important; 
+    border: 1px solid #e5e7eb;
+    border-radius: var(--borda-radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--sombra);
+}
+
+/* Força TODO e QUALQUER texto dentro do .order-card a ser sempre preto.
+  O seletor '*' significa 'todos os elementos filhos'.
+  A diretiva '!important' garante que esta regra vença qualquer outra.
+*/
+.order-card * {
+    color: #111827 !important;
+}
+
+.order-success-container {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background-color: var(--cor-sucesso-fundo, #d4edda); /* Usa variável com um fallback */
+    border: 1px solid var(--cor-sucesso-borda, #c3e6cb); /* Usa variável com um fallback */
+    border-radius: var(--borda-radius);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.order-success-container h2 {
+    color: var(--cor-sucesso-texto, #155724); /* Usa variável com um fallback */
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.order-success-container p {
+    font-size: 1.1rem;
+    color: var(--cor-texto-secundario);
+    margin-bottom: 2rem;
+}
+
+.order-success-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* --- Adicione também as variáveis de cor para o tema de sucesso --- */
+/* Adicione dentro do seletor :root */
+:root {
+    /* ... (suas variáveis existentes) ... */
+    --cor-sucesso-fundo: #d4edda;
+    --cor-sucesso-borda: #c3e6cb;
+    --cor-sucesso-texto: #155724;
+    --cor-secundaria-fundo: #6c757d;
+    --cor-secundaria-hover: #5a6268;
+}
+
+/* Adicione dentro do seletor body.dark-mode */
+body.dark-mode {
+    /* ... (suas variáveis existentes) ... */
+    --cor-sucesso-fundo: #1c3b23;
+    --cor-sucesso-borda: #2a5834;
+    --cor-sucesso-texto: #a7f3d0;
+    --cor-secundaria-fundo: #4a5567;
+    --cor-secundaria-hover: #3b4554;
+}
+
+/* E adicione o estilo para o botão secundário, caso não o tenha */
+.btn-secondary {
+    background-color: var(--cor-secundaria-fundo);
+    color: var(--cor-branca);
+}
+
+.btn-secondary:hover {
+    background-color: var(--cor-secundaria-hover);
+}
+    </style>
+</head>
+<body class=""> <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-logo">
+                    <a href="/"><i class="fas fa-store"></i> Minha Loja</a>
+                </div>
+                <div class="nav-search">
+                    <input type="search" class="search-bar" placeholder="Buscar produtos...">
+                </div>
+                <div class="nav-actions">
+                    <a href="/"><i class="fas fa-home"></i> <span>Home</span></a>
+                    <a href="/orders"><i class="fas fa-receipt"></i> <span>Meus Pedidos</span></a>
+                    <a href="/cart" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count hidden">0</span>
+                    </a>
+                    <button class="theme-toggle" id="theme-toggle-btn" title="Alternar tema">
+                        <i class="fas fa-moon"></i> </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
