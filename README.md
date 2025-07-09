@@ -67,4 +67,4 @@ Uma vez que todos os serviços estejam em execução:
 
 ## Licença 📄
 
-Este projeto está licenciado sob a licença [MIT License] - veja o arquivo [LICENSE](LICENSE) para detalhes.
+Este projeto está licenciado sob a licença **MIT License** - veja o arquivo [LICENSE](LICENSE) para detalhes.
