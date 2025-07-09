@@ -8,11 +8,11 @@ O **EcommerceMVC** é uma plataforma de comércio eletrônico modularizada, proj
 
 ## Características (Potenciais) ✨
 
-* **Gerenciamento de Produtos:** 📦
-* **Carrinho de Compras:** 🛍️
-* **Gerenciamento de Pedidos:** 📝
-* **Arquitetura de Microserviços:**
-* **API Gateway:**
+* **Gerenciamento de Produtos** 📦
+* **Carrinho de Compras** 🛍️
+* **Gerenciamento de Pedidos** 📝
+* **Arquitetura de Microserviços**
+* **API Gateway**
 
 ## Tecnologias Utilizadas 🛠️
 
