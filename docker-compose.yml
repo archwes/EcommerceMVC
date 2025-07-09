@@ -11,13 +11,12 @@ services:
     container_name: cart-service-container
     restart: unless-stopped
 
-  order-service: # <-- NOVO
+  order-service:
     build: ./order-service
     container_name: order-service-container
     ports:
-      - "3003:3003" # Exposto para debug
+      - "3003:3003"
     environment:
-      # O order-service precisa saber onde o cart-service está
       - CART_SERVICE_URL=http://cart-service:3002
     depends_on:
       - cart-service
@@ -31,9 +30,9 @@ services:
     environment:
       - PRODUCT_SERVICE_URL=http://product-service:3001
       - CART_SERVICE_URL=http://cart-service:3002
-      - ORDER_SERVICE_URL=http://order-service:3003 # <-- NOVO
+      - ORDER_SERVICE_URL=http://order-service:3003
     depends_on:
       - product-service
       - cart-service
-      - order-service # <-- NOVO
+      - order-service
     restart: unless-stopped

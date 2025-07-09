@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-// A URL base é pega do arquivo .env
 const API_URL = process.env.PRODUCT_SERVICE_URL;
 
 const getAllProducts = async () => {
@@ -10,7 +9,7 @@ const getAllProducts = async () => {
     return response.data;
   } catch (error) {
     console.error('Erro ao buscar produtos:', error.message);
-    return []; // Retorna um array vazio em caso de erro
+    return [];
   }
 };
 
@@ -21,7 +20,7 @@ const getProductById = async (id) => {
     return response.data;
   } catch (error) {
     console.error(`Erro ao buscar produto ID ${id}:`, error.message);
-    return null; // Retorna nulo se o produto não for encontrado ou houver erro
+    return null;
   }
 };
 

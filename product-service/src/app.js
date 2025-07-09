@@ -8,13 +8,11 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// Rota para listar todos os produtos
 app.get('/products', (req, res) => {
   console.log('Requisição recebida para listar produtos.');
   res.json(products);
 });
 
-// Rota para obter um produto específico pelo ID
 app.get('/products/:id', (req, res) => {
   const { id } = req.params;
   console.log(`Requisição recebida para o produto ID: ${id}`);

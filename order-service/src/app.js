@@ -11,7 +11,6 @@ app.use(express.json());
 
 const orders = [];
 
-// Rota para criar um novo pedido
 app.post('/orders/create', async (req, res) => {
     const { userId } = req.body;
     if (!userId) {
@@ -39,7 +38,6 @@ app.post('/orders/create', async (req, res) => {
         orders.push(newOrder);
         console.log(`[Order-Service] Pedido ${newOrder.orderId} criado com sucesso.`);
 
-        // Limpa o carrinho após criar o pedido
         await axios.delete(`${CART_SERVICE_URL}/cart/${userId}`);
         console.log(`[Order-Service] Carrinho do usuário ${userId} limpo.`);
 
@@ -51,7 +49,6 @@ app.post('/orders/create', async (req, res) => {
     }
 });
 
-// Rota para listar os pedidos de um usuário
 app.get('/orders/:userId', (req, res) => {
     const { userId } = req.params;
     const userOrders = orders.filter(order => order.userId === userId);

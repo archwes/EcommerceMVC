@@ -7,17 +7,14 @@ const PORT = process.env.PORT || 3002;
 app.use(cors());
 app.use(express.json());
 
-// Estrutura de dados simples: { userId: [ { ...produto }, { ...produto } ] }
 const carts = {};
 
-// Rota para obter o carrinho de um usuário
 app.get('/cart/:userId', (req, res) => {
     const { userId } = req.params;
     const userCart = carts[userId] || [];
     res.json(userCart);
 });
 
-// Rota para adicionar um item ao carrinho
 app.post('/cart/:userId/add', (req, res) => {
     const { userId } = req.params;
     const product = req.body;
@@ -34,7 +31,6 @@ app.post('/cart/:userId/add', (req, res) => {
     res.status(200).json(carts[userId]);
 });
 
-// Rota para limpar o carrinho (usada pelo serviço de pedidos)
 app.delete('/cart/:userId', (req, res) => {
     const { userId } = req.params;
     if (carts[userId]) {

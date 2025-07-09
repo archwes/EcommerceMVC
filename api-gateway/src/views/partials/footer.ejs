@@ -34,12 +34,10 @@
 
     document.addEventListener('DOMContentLoaded', updateCartCount);
 
-    // --- NOVA LÓGICA PARA O SELETOR DE TEMA ---
     const themeToggleButton = document.getElementById('theme-toggle-btn');
     const body = document.body;
     const themeIcon = themeToggleButton.querySelector('i');
 
-    // Função para aplicar o tema salvo
     function applyTheme(theme) {
         if (theme === 'dark') {
             body.classList.add('dark-mode');
@@ -52,18 +50,15 @@
         }
     }
 
-    // Verifica o tema salvo no localStorage ao carregar a página
     const savedTheme = localStorage.getItem('theme') || 'light';
     applyTheme(savedTheme);
 
-    // Adiciona o evento de clique no botão
     themeToggleButton.addEventListener('click', () => {
         let newTheme = 'light';
         if (!body.classList.contains('dark-mode')) {
             newTheme = 'dark';
         }
         
-        // Aplica o novo tema e salva no localStorage
         applyTheme(newTheme);
         localStorage.setItem('theme', newTheme);
     });
